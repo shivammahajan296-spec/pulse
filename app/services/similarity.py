@@ -38,6 +38,8 @@ def score_similarity(product: dict[str, Any], launch: dict[str, Any]) -> tuple[f
 
 
 def find_similar(product: dict[str, Any], line_id: str, launches: list[dict[str, Any]], limit: int = 5) -> list[dict[str, Any]]:
+    if product.get("launch_scenario") == "cold_start":
+        return []
     candidates = []
     for launch in launches:
         if launch["line_id"] != line_id:
@@ -45,4 +47,3 @@ def find_similar(product: dict[str, Any], line_id: str, launches: list[dict[str,
         score, common, differences = score_similarity(product, launch)
         candidates.append({**launch, "similarity_score": score, "common_attributes": common, "meaningful_differences": differences})
     return sorted(candidates, key=lambda x: x["similarity_score"], reverse=True)[:limit]
-

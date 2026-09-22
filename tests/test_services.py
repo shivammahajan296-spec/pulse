@@ -43,6 +43,32 @@ def high_risk_payload() -> dict:
     ).model_dump()
 
 
+def cold_start_payload() -> dict:
+    return SKUAnalysisRequest(
+        launch_scenario="cold_start", product_name="Bio-Peptide Microgel", category="Skincare",
+        product_family="Premium", formula_type="Gel", viscosity=26000, fill_volume_ml=75,
+        package_type="Airless Pump", container_type="Plastic Bottle", closure_type="Pump",
+        filling_technology="Piston Filling", decoration="Sleeve", process_complexity="High",
+        compounding_required=True, previous_product="Hydrating Serum",
+        previous_product_category="Serum", planned_batch_quantity=18000, run_sequence=1,
+        campaign_position=1, days_since_prior_run=30, days_since_last_pm=60,
+        labor_assumption=6,
+    ).model_dump()
+
+
+def rebrand_payload() -> dict:
+    return SKUAnalysisRequest(
+        launch_scenario="rebrand", product_name="Aurelia Hydration Lotion", category="Skincare",
+        product_family="Daily Care", formula_type="Lotion", viscosity=14500, fill_volume_ml=200,
+        package_type="Bottle", container_type="Plastic Bottle", closure_type="Pump",
+        filling_technology="Piston Filling", decoration="Label", process_complexity="Medium",
+        compounding_required=True, previous_product="Aqua Repair Lotion",
+        previous_product_category="Skincare", planned_batch_quantity=50000, run_sequence=1,
+        campaign_position=2, days_since_prior_run=3, days_since_last_pm=11,
+        labor_assumption=6,
+    ).model_dump()
+
+
 class AnalysisTests(unittest.TestCase):
     def test_data_scale_and_weights(self):
         self.assertEqual(dataset_summary()["production_runs"], 22708)
@@ -80,6 +106,22 @@ class AnalysisTests(unittest.TestCase):
             result = analyze(payload)
             self.assertTrue(result["ranked_lines"])
             self.assertEqual(result["ranked_lines"][0]["risk_flags"][0]["severity"], severity)
+
+    def test_cold_start_uses_no_product_analogues(self):
+        result = analyze(cold_start_payload())
+        best = result["ranked_lines"][0]
+        self.assertEqual(best["similar_launches"], [])
+        self.assertEqual(best["predictions"]["reference_count"], 0)
+        self.assertEqual(best["predictions"]["uncertainty_level"], "High")
+        self.assertEqual(best["risk_flags"][0]["severity"], "High")
+
+    def test_rebrand_uses_technical_history(self):
+        result = analyze(rebrand_payload())
+        best = result["ranked_lines"][0]
+        self.assertEqual(len(best["similar_launches"]), 5)
+        self.assertEqual(best["predictions"]["reference_count"], 5)
+        self.assertGreater(best["similar_launches"][0]["similarity_score"], 70)
+        self.assertEqual(best["risk_flags"][0]["severity"], "Low")
 
 
 if __name__ == "__main__":

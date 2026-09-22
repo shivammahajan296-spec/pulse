@@ -7,6 +7,7 @@ from pydantic import BaseModel, Field, field_validator
 
 class SKUAnalysisRequest(BaseModel):
     product_name: str = Field(min_length=2, max_length=100)
+    launch_scenario: Literal["standard", "cold_start", "rebrand"] = "standard"
     category: str
     product_family: str = "Hydration"
     formula_type: str
@@ -47,4 +48,3 @@ class LLMTestRequest(BaseModel):
 class LLMExplainRequest(LLMTestRequest):
     analysis_id: str
     prompt_type: Literal["recommendation", "risk", "comparison"] = "recommendation"
-
