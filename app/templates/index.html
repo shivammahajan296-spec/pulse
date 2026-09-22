@@ -137,6 +137,14 @@
         </div>
 
         <div class="view" id="view-analysis">
+          <section class="scenario-picker" aria-labelledby="scenario-picker-title">
+            <div class="scenario-picker-heading"><div><p class="eyebrow">QUICK START EXAMPLES</p><h2 id="scenario-picker-title">Choose a launch storyline</h2></div><p>Select an example to populate the form, then run the analysis to update every decision page.</p></div>
+            <div class="scenario-options">
+              <button class="scenario-option low selected" type="button" data-scenario="low"><span class="scenario-icon">✓</span><span><small>LOW RISK</small><b>Hydrating Lotion</b><em>Strong history · familiar package</em></span><strong>Use example →</strong></button>
+              <button class="scenario-option medium" type="button" data-scenario="medium"><span class="scenario-icon">!</span><span><small>MEDIUM RISK</small><b>Radiance Renewal Serum</b><em>Elevated scrap · narrow line choice</em></span><strong>Use example →</strong></button>
+              <button class="scenario-option high" type="button" data-scenario="high"><span class="scenario-icon">△</span><span><small>HIGH RISK</small><b>Extreme Volume Mascara</b><em>Boundary viscosity · labor pressure</em></span><strong>Use example →</strong></button>
+            </div>
+          </section>
           <div class="analysis-layout">
             <form id="analysis-form" class="card form-card">
               <div class="form-section">
@@ -182,7 +190,7 @@
                   <label class="field"><span>Run sequence <i>*</i></span><input name="run_sequence" type="number" value="1" min="1" max="20"></label>
                   <label class="field"><span>Campaign position <i>*</i></span><input name="campaign_position" type="number" value="2" min="1" max="30"></label>
                   <label class="field"><span>Days since prior run <i>*</i></span><input name="days_since_prior_run" type="number" value="4" min="0"></label>
-                  <label class="field"><span>Days since last PM <i>*</i></span><select name="days_since_last_pm"><option value="5">5</option><option value="11" selected>11</option><option value="20">20</option><option value="30">30</option></select></label>
+                  <label class="field"><span>Days since last PM <i>*</i></span><select name="days_since_last_pm"><option value="5">5</option><option value="11" selected>11</option><option value="20">20</option><option value="30">30</option><option value="60">60</option></select></label>
                   <label class="field"><span>Labor assumption <i>*</i></span><div class="input-unit"><input name="labor_assumption" type="number" value="6" min="2"><b>operators</b></div></label>
                 </div>
               </div>

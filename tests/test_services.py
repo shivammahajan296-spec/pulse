@@ -19,6 +19,30 @@ def demo_payload() -> dict:
     ).model_dump()
 
 
+def medium_risk_payload() -> dict:
+    return SKUAnalysisRequest(
+        product_name="Radiance Renewal Serum", category="Serum", product_family="Treatment",
+        formula_type="Serum", viscosity=11500, fill_volume_ml=100, package_type="Bottle",
+        container_type="Glass Bottle", closure_type="Dropper", filling_technology="Pump Filling",
+        decoration="Hot Stamp", process_complexity="High", compounding_required=True,
+        previous_product="Daily Foundation", previous_product_category="Foundation",
+        planned_batch_quantity=30000, run_sequence=1, campaign_position=1,
+        days_since_prior_run=21, days_since_last_pm=30, labor_assumption=7,
+    ).model_dump()
+
+
+def high_risk_payload() -> dict:
+    return SKUAnalysisRequest(
+        product_name="Extreme Volume Mascara", category="Mascara", product_family="Color",
+        formula_type="Mascara", viscosity=60000, fill_volume_ml=15, package_type="Bottle",
+        container_type="Plastic Bottle", closure_type="Wand", filling_technology="Mascara Filling",
+        decoration="Hot Stamp", process_complexity="High", compounding_required=True,
+        previous_product="Hydrating Lotion", previous_product_category="Skincare",
+        planned_batch_quantity=65000, run_sequence=1, campaign_position=1,
+        days_since_prior_run=45, days_since_last_pm=60, labor_assumption=6,
+    ).model_dump()
+
+
 class AnalysisTests(unittest.TestCase):
     def test_data_scale_and_weights(self):
         self.assertEqual(dataset_summary()["production_runs"], 22708)
@@ -50,7 +74,13 @@ class AnalysisTests(unittest.TestCase):
         self.assertEqual(len(excluded), 12)
         self.assertTrue(all(item["reason"] and item["all_reasons"] for item in excluded))
 
+    def test_storyline_examples_cover_three_risk_levels(self):
+        expected = [(demo_payload(), "Low"), (medium_risk_payload(), "Medium"), (high_risk_payload(), "High")]
+        for payload, severity in expected:
+            result = analyze(payload)
+            self.assertTrue(result["ranked_lines"])
+            self.assertEqual(result["ranked_lines"][0]["risk_flags"][0]["severity"], severity)
+
 
 if __name__ == "__main__":
     unittest.main()
-
