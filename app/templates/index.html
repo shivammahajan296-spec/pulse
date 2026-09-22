@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Project PULSE — new product launch manufacturing decision support">
+  <title>Project PULSE · NPL Predictive Performance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+  <section class="login-screen" id="login-screen" aria-labelledby="login-title">
+    <div class="login-panel">
+      <div class="login-content">
+        <div class="login-brand" aria-label="Project PULSE Manufacturing Intelligence">
+          <span>Project</span>
+          <strong>PULSE<i></i></strong>
+          <small>MANUFACTURING INTELLIGENCE</small>
+        </div>
+        <div class="login-rule"></div>
+        <div class="login-copy">
+          <h1 id="login-title">Welcome back</h1>
+          <p>Sign in to access NPL Predictive Performance.</p>
+        </div>
+        <form class="login-form" id="login-form" novalidate>
+          <label class="login-field"><span>♙</span><input id="login-email" type="email" autocomplete="username" placeholder="User ID" aria-label="User ID" required></label>
+          <label class="login-field"><span>♙</span><input id="login-password" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password" required><button type="button" id="toggle-login-password" aria-label="Show or hide password">◉</button></label>
+          <p class="login-error hidden" id="login-error" role="alert"></p>
+          <div class="login-options"><label><input id="remember-login" type="checkbox"> Remember me</label><button type="button" id="forgot-password">Forgot password?</button></div>
+          <button class="login-submit" type="submit">Enter <span>→</span></button>
+        </form>
+        <p class="login-security"><span>♢</span> Secure access for authorized users only.</p>
+      </div>
+      <div class="login-wave" aria-hidden="true"></div>
+      <footer>Project PULSE <i>|</i> Synthetic POC <i>|</i> Module 1</footer>
+    </div>
+    <div class="login-visual" role="img" aria-label="Project PULSE manufacturing intelligence product visual"></div>
+  </section>
+
+  <div class="app-shell hidden" id="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark"><span></span><span></span><span></span></div>
+        <div><strong>Project PULSE</strong><small>Manufacturing Intelligence</small><em>Module 1</em></div>
+      </div>
+      <nav class="nav" aria-label="Application navigation">
+        <button class="nav-item active" data-view="overview"><span class="nav-icon">⌂</span><span>Overview</span></button>
+        <button class="nav-item" data-view="analysis"><span class="nav-icon">＋</span><span>New SKU Analysis</span></button>
+        <button class="nav-item" data-view="comparison"><span class="nav-icon">≋</span><span>Line Comparison</span></button>
+        <button class="nav-item" data-view="references"><span class="nav-icon">◫</span><span>Historical References</span></button>
+        <button class="nav-item" data-view="risks"><span class="nav-icon">◇</span><span>Risk & Explainability</span></button>
+        <button class="nav-item" data-view="model"><span class="nav-icon">◎</span><span>Model / Data Overview</span></button>
+        <button class="nav-item" data-view="settings"><span class="nav-icon">⚙</span><span>Settings</span></button>
+      </nav>
+      <div class="sidebar-foot">
+        <p><span class="environment-icon">◇</span> Environment</p>
+        <div class="environment-list"><span><i></i>Synthetic Data</span><span><i></i>Single Site</span><span><i></i>POC Environment</span><span><i></i>Model Ready <small>(v1.0)</small></span></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobile-menu" aria-label="Open navigation">☰</button>
+        <div class="topbar-title">
+          <p class="breadcrumbs" id="topbar-breadcrumbs">Project PULSE <span>/</span> Module 1</p>
+          <h1 id="topbar-heading">NPL Predictive Performance</h1>
+          <p class="topbar-subtitle" id="topbar-subtitle"><b>Predict. Compare. Decide.</b><span>|</span>Manufacturing intelligence for new product launches.</p>
+        </div>
+        <div class="topbar-actions">
+          <div class="header-status"><span class="status-icon">◎</span><p><b>Synthetic Data</b><small>22,708 runs</small></p></div>
+          <div class="header-status"><i></i><p><b>Model Ready</b><small>v1.0</small></p></div>
+          <button class="button button-secondary analysis-header-sample hidden" id="header-load-demo">Load Sample SKU</button>
+          <button class="button button-secondary settings-header-action hidden" id="header-test-connection">Test Connection</button>
+          <button class="button button-primary settings-header-action hidden" id="header-save-settings">Save Settings</button>
+          <button class="button button-primary header-cta" id="header-analysis-cta" data-view-jump="analysis"><span>＋</span> <span class="header-cta-label">New Analysis</span></button>
+          <div class="account-menu">
+            <button class="avatar" id="account-menu-button" type="button" aria-label="Open account menu" aria-haspopup="menu" aria-expanded="false">SM</button>
+            <div class="account-popover hidden" id="account-popover" role="menu">
+              <div class="account-summary"><span class="avatar account-avatar">SM</span><p><small>Signed in as</small><b id="account-email">Demo user</b></p></div>
+              <button id="logout-button" type="button" role="menuitem"><span>↪</span> Log out</button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="view active" id="view-overview">
+          <div class="page-heading">
+            <div><p class="eyebrow">DECISION WORKSPACE</p><h2>Launch recommendation</h2><p class="subtle" id="overview-subtitle">Evaluate a new SKU to see its manufacturing line recommendation.</p></div>
+            <button class="button button-secondary" id="rerun-analysis" disabled>↻ Refresh analysis</button>
+          </div>
+
+          <div id="overview-empty" class="reference-overview">
+            <div class="reference-metrics">
+              <article class="card reference-metric"><span class="reference-metric-icon">◇</span><div><strong>420</strong><b>SKUs</b><small>Across 6 product categories</small></div></article>
+              <article class="card reference-metric"><span class="reference-metric-icon">△</span><div><strong>130</strong><b>Formulas</b><small>Unique formulations</small></div></article>
+              <article class="card reference-metric"><span class="reference-metric-icon">⌁</span><div><strong>12</strong><b>Filling lines</b><small>With different capabilities</small></div></article>
+              <article class="card reference-metric"><span class="reference-metric-icon">⚙</span><div><strong>5</strong><b>Compounding lines</b><small>For semi-finished materials</small></div></article>
+              <article class="card reference-metric"><span class="reference-metric-icon">▤</span><div><strong>22,708</strong><b>Historical runs</b><small>Jan 2023 – Dec 2025 (3 years)</small></div></article>
+            </div>
+            <div class="reference-primary-grid">
+              <article class="card get-started-card">
+                <p class="eyebrow">GET STARTED</p><h3>Analyze a New SKU</h3><p>Enter product attributes and launch context to predict startup performance, compare eligible lines, identify risks, and get a data-driven recommendation.</p>
+                <div class="overview-actions"><button class="button button-primary" data-view-jump="analysis">Analyze a New SKU <span>→</span></button><button class="button button-secondary" id="overview-load-sample">Load Sample SKU</button></div>
+                <div class="reference-pipeline" aria-label="New SKU analysis pipeline">
+                  <div><span>01</span><i>▤</i><b>New SKU<br>Input</b></div><em>→</em><div><span>02</span><i>▽</i><b>Eligibility<br>Filtering</b></div><em>→</em><div><span>03</span><i>◉</i><b>Similar<br>Launches</b></div><em>→</em><div><span>04</span><i>⌁</i><b>Predict<br>Startup KPIs</b></div><em>→</em><div><span>05</span><i>△</i><b>Identify<br>Risks</b></div><em>→</em><div><span>06</span><i>☷</i><b>Rank &<br>Recommend</b></div>
+                </div>
+              </article>
+              <article class="card reference-scenario-card">
+                <div class="card-head"><div><p class="eyebrow">DEMO SCENARIO</p><h3>Hydrating Lotion (Demo)</h3><p>Medium-viscosity lotion in 200ml pump bottle</p></div><span class="sample-data-badge">Sample Data</span></div>
+                <div class="scenario-body"><dl><div><dt>Category</dt><dd>Skincare</dd></div><div><dt>Formula type</dt><dd>Lotion</dd></div><div><dt>Fill volume</dt><dd>200 ml</dd></div><div><dt>Package</dt><dd>Pump bottle</dd></div><div><dt>Viscosity</dt><dd>14,500 cP</dd></div><div><dt>Process complexity</dt><dd>Medium</dd></div></dl><div class="bottle-visual" aria-hidden="true"><span class="pump-top"></span><span class="bottle-neck"></span><span class="bottle-body"></span></div></div>
+                <div class="scenario-result"><div><small>Recommended Line</small><strong>F04</strong></div><div><small>Predicted OEE</small><strong>81.2%</strong><em>(77.1 – 84.8%)</em></div><div><small>Startup Risk</small><b>Low</b></div></div>
+              </article>
+            </div>
+            <div class="reference-secondary-grid">
+              <article class="card dataset-insights-card"><h3><span>▥</span> Dataset Insights (Synthetic)</h3><div class="insight-metrics"><div><strong>2.7</strong><span>Avg. eligible lines<br>per SKU</span></div><div><strong>78.4%</strong><span>Avg. startup OEE</span></div><div><strong>2.8%</strong><span>Avg. startup scrap</span></div><div><strong>11</strong><span>Avg. reference<br>launches</span></div><div><strong>62 min</strong><span>Avg. changeover<br>duration</span></div></div></article>
+              <article class="card category-card"><h3><span>▧</span> Product Categories in Dataset</h3><div class="category-content"><div class="category-donut"><span><b>420</b><small>SKUs</small></span></div><ul><li><i class="cat-1"></i>Skincare <b>28%</b></li><li><i class="cat-2"></i>Foundation <b>18%</b></li><li><i class="cat-3"></i>Mascara <b>14%</b></li><li><i class="cat-4"></i>Lip Gloss <b>12%</b></li><li><i class="cat-5"></i>Lotion <b>18%</b></li><li><i class="cat-6"></i>Others <b>10%</b></li></ul></div></article>
+            </div>
+            <div class="reference-bottom-grid">
+              <article class="card recent-card"><div class="card-head"><h3><span>◷</span> Recent Sample Recommendations</h3><button class="text-button" data-view-jump="comparison">View all →</button></div><div class="table-scroll"><table><thead><tr><th>Date</th><th>Product</th><th>Category</th><th>Recommended Line</th><th>Predicted OEE</th><th>Risk</th></tr></thead><tbody><tr><td>12-Sep-2026</td><td>Hydrating Lotion</td><td>Skincare</td><td><b class="orange-text">F04</b></td><td>81.2%</td><td><span class="pill pill-success">Low</span></td></tr><tr><td>10-Sep-2026</td><td>Matte Foundation</td><td>Foundation</td><td><b class="orange-text">F07</b></td><td>76.5%</td><td><span class="pill pill-warn">Medium</span></td></tr><tr><td>08-Sep-2026</td><td>Volume Mascara</td><td>Mascara</td><td><b class="orange-text">F02</b></td><td>79.1%</td><td><span class="pill pill-success">Low</span></td></tr><tr><td>05-Sep-2026</td><td>Brightening Serum</td><td>Skincare</td><td><b class="orange-text">F04</b></td><td>83.6%</td><td><span class="pill pill-success">Low</span></td></tr></tbody></table></div></article>
+              <article class="card benefits-card"><h3><span>ϟ</span> Key Benefits</h3><div class="benefits-grid"><div><i>♨</i><p><b>Reduce trial-and-error</b><span>Data-driven line recommendations</span></p></div><div><i>△</i><p><b>Minimize startup risk</b><span>Identify issues before production</span></p></div><div><i>▧</i><p><b>Improve planning confidence</b><span>With evidence and prediction intervals</span></p></div><div><i>♙</i><p><b>Leverage historical knowledge</b><span>Similar product launch insights</span></p></div></div></article>
+            </div>
+            <footer class="reference-footer"><span>Project PULSE <i>|</i> Manufacturing Intelligence</span><span>Module 1 — NPL Predictive Performance <i>|</i> Synthetic POC</span><b>v1.0</b></footer>
+          </div>
+
+          <div id="overview-results" class="hidden">
+            <div class="metric-grid" id="overview-metrics"></div>
+            <div class="dashboard-grid">
+              <article class="card recommendation-card" id="recommendation-card"></article>
+              <article class="card chart-card"><div class="card-head"><div><p class="eyebrow">CANDIDATE POSITION</p><h3>Recommendation score</h3></div><span class="legend-dot">Composite / 100</span></div><div id="overview-score-chart" class="bar-chart"></div></article>
+              <article class="card quick-risks" id="quick-risks"></article>
+              <article class="card stage-card" id="compounding-card"></article>
+            </div>
+          </div>
+        </div>
+
+        <div class="view" id="view-analysis">
+          <div class="analysis-layout">
+            <form id="analysis-form" class="card form-card">
+              <div class="form-section">
+                <div class="section-title"><span>01</span><div><h3>Product Identity</h3><p>Basic details about the new product.</p></div></div>
+                <div class="form-grid identity-grid">
+                  <label class="field"><span>Product name <i>*</i></span><input name="product_name" value="New Hydrating Lotion" required></label>
+                  <label class="field"><span>Temporary SKU</span><input id="temporary-sku" value="NPL-SKIN-042"></label>
+                  <label class="field"><span>Category <i>*</i></span><select name="category"><option>Skincare</option><option>Foundation</option><option>Mascara</option><option>Lip Gloss</option><option>Lotion</option><option>Cream</option><option>Serum</option></select></label>
+                  <label class="field"><span>Product family</span><select name="product_family"><option>Hydration</option><option>Treatment</option><option>Daily Care</option><option>Color</option><option>Premium</option></select></label>
+                  <label class="field identity-formula"><span>Formula type <i>*</i></span><select name="formula_type"><option>Lotion</option><option>Serum</option><option>Emulsion</option><option>Gel</option><option>Cream</option><option>Liquid Foundation</option><option>Mascara</option><option>Gloss</option></select></label>
+                  <label class="field identity-complexity"><span>Process complexity <i>*</i></span><select name="process_complexity"><option>Low</option><option selected>Medium</option><option>High</option></select></label>
+                </div>
+              </div>
+              <div class="form-section">
+                <div class="section-title"><span>02</span><div><h3>Physical Properties</h3><p>Key formulation and fill characteristics.</p></div></div>
+                <div class="form-grid three">
+                  <label class="field"><span>Viscosity <i>*</i></span><div class="input-unit"><input name="viscosity" type="number" value="14500" min="50" max="100000" required><b>cP</b></div></label>
+                  <label class="field"><span>Fill volume <i>*</i></span><div class="input-unit"><input name="fill_volume_ml" type="number" value="200" min="1" max="2000" required><b>ml</b></div></label>
+                  <label class="field"><span>Target batch quantity <i>*</i></span><div class="input-unit"><input name="planned_batch_quantity" type="number" value="50000"><b>units</b></div></label>
+                </div>
+              </div>
+              <div class="form-section">
+                <div class="section-title"><span>03</span><div><h3>Packaging</h3><p>Container and packaging details.</p></div></div>
+                <div class="form-grid packaging-grid">
+                  <label class="field"><span>Package type <i>*</i></span><select name="package_type"><option>Bottle</option><option>Tube</option><option>Jar</option><option>Airless Pump</option></select></label>
+                  <label class="field"><span>Container type <i>*</i></span><select name="container_type"><option>Plastic Bottle</option><option>Glass Bottle</option><option>Jar</option><option>Tube</option></select></label>
+                  <label class="field"><span>Closure type <i>*</i></span><select name="closure_type"><option>Pump</option><option>Cap</option><option>Dropper</option><option>Flip Top</option><option>Wand</option></select></label>
+                  <label class="field"><span>Filling technology <i>*</i></span><select name="filling_technology"><option>Piston Filling</option><option>Pump Filling</option><option>Gravity Filling</option><option>Hot Fill</option><option>Tube Filling</option><option>Mascara Filling</option></select></label>
+                  <label class="field"><span>Decoration</span><select name="decoration"><option>Label</option><option>None</option><option>Screen Print</option><option>Hot Stamp</option><option>Sleeve</option><option>Carton-specific Requirement</option></select></label>
+                </div>
+              </div>
+              <div class="form-section">
+                <div class="section-title"><span>04</span><div><h3>Manufacturing Context</h3><p>Additional manufacturing requirements.</p></div></div>
+                <div class="form-grid manufacturing-grid">
+                  <label class="field compound-field"><span>Compounding required <i>*</i></span><span class="yes-no-toggle"><input type="checkbox" name="compounding_required" checked><b>Yes</b><em>No</em></span></label>
+                  <label class="field"><span>Previous product / campaign product</span><input name="previous_product" value="Hydrating Serum"></label>
+                  <label class="field"><span>Previous product category</span><select name="previous_product_category"><option>Skincare</option><option>Foundation</option><option>Mascara</option><option>Lip Gloss</option><option>Lotion</option><option>Cream</option><option>Serum</option></select></label>
+                </div>
+              </div>
+              <div class="form-section">
+                <div class="section-title"><span>05</span><div><h3>Launch Context</h3><p>Operational context for startup performance.</p></div></div>
+                <div class="form-grid launch-grid">
+                  <label class="field"><span>Run sequence <i>*</i></span><input name="run_sequence" type="number" value="1" min="1" max="20"></label>
+                  <label class="field"><span>Campaign position <i>*</i></span><input name="campaign_position" type="number" value="2" min="1" max="30"></label>
+                  <label class="field"><span>Days since prior run <i>*</i></span><input name="days_since_prior_run" type="number" value="4" min="0"></label>
+                  <label class="field"><span>Days since last PM <i>*</i></span><select name="days_since_last_pm"><option value="5">5</option><option value="11" selected>11</option><option value="20">20</option><option value="30">30</option></select></label>
+                  <label class="field"><span>Labor assumption <i>*</i></span><div class="input-unit"><input name="labor_assumption" type="number" value="6" min="2"><b>operators</b></div></label>
+                </div>
+              </div>
+              <div class="form-submit"><button class="button button-secondary" id="reset-analysis-form" type="button"><span>↻</span> Reset Form</button><button class="button button-primary button-large" type="submit">Analyze New SKU <span>→</span></button></div>
+            </form>
+            <aside class="form-aside">
+              <article class="card preview-card">
+                <div class="preview-heading"><span>◉</span><div><h3>Analysis Preview</h3><p>Live summary of your inputs</p></div><b>Ready to analyze</b></div>
+                <dl class="analysis-preview" id="analysis-preview"></dl>
+                <div class="preview-process"><div class="preview-process-heading"><span>♙</span><div><h3>How it works</h3><p>From attributes to manufacturing line recommendation.</p></div></div><ol class="process-mini"><li><b>01</b><span><strong>Eligibility first</strong><small>Filter lines based on physical and operational constraints.</small></span></li><li><b>02</b><span><strong>Retrieve similar launches</strong><small>Find historical products with matching attributes.</small></span></li><li><b>03</b><span><strong>Predict startup performance</strong><small>Estimate KPIs with calibrated uncertainty intervals.</small></span></li><li><b>04</b><span><strong>Identify risks</strong><small>Detect potential issues and their drivers.</small></span></li><li><b>05</b><span><strong>Rank and recommend</strong><small>Combine performance, risk and confidence.</small></span></li></ol></div>
+                <div class="preview-tip"><span>☀</span><div><b>Tip</b><p>Use “Load Sample SKU” to try a pre-filled example and see results across all pages.</p></div></div>
+              </article>
+            </aside>
+          </div>
+        </div>
+
+        <div class="view" id="view-comparison">
+          <div class="page-heading"><div><p class="eyebrow">CANDIDATE EVALUATION</p><h2>Line Comparison</h2><p class="subtle">Inspect every eligible line and the components behind its position.</p></div></div>
+          <div class="requires-analysis" data-section="comparison"></div>
+        </div>
+
+        <div class="view" id="view-references">
+          <div class="page-heading"><div><p class="eyebrow">LINE-SPECIFIC EVIDENCE</p><h2>Historical References</h2><p class="subtle">Startup launches selected by weighted manufacturing similarity.</p></div><select class="compact-select" id="reference-line-filter" disabled><option>All candidate lines</option></select></div>
+          <div class="requires-analysis" data-section="references"></div>
+        </div>
+
+        <div class="view" id="view-risks">
+          <div class="page-heading"><div><p class="eyebrow">DECISION TRANSPARENCY</p><h2>Risk & Explainability</h2><p class="subtle">Understand the risk thresholds, evidence, and recommendation drivers.</p></div></div>
+          <div class="requires-analysis" data-section="risks"></div>
+        </div>
+
+        <div class="view" id="view-model">
+          <div class="page-heading"><div><p class="eyebrow">METHODOLOGY</p><h2>Model / Data Overview</h2><p class="subtle">An inspectable POC architecture built for production replacement.</p></div><span class="pill pill-neutral">v1.0 · Synthetic</span></div>
+          <div id="model-content"><div class="skeleton-block tall"></div></div>
+        </div>
+
+        <div class="view" id="view-settings">
+          <div class="page-heading"><div><p class="eyebrow">CONFIGURATION</p><h2>Settings</h2><p class="subtle">Optional narrative assistance and future operating constraints.</p></div></div>
+          <div class="settings-reference-layout">
+            <article class="card settings-llm-card">
+              <div class="settings-section-head"><span>⚙</span><div><h3>LLM Integration</h3><p>Configure optional AI-generated explanations for analysis results.</p></div><button type="button">Learn more ↗</button></div>
+              <div class="settings-llm-body">
+                <div class="settings-fields">
+                  <label class="field"><span>API Key</span><div class="password-wrap"><input id="api-key" type="password" autocomplete="off" placeholder="Enter key for this browser session"><button id="toggle-key" type="button" aria-label="Show or hide API key">◉</button></div><small>Stored in your browser session only. Never written to server or disk.</small></label>
+                  <label class="field"><span>LLM endpoint</span><input id="llm-endpoint" value="https://llmfoundry.straivedemo.com/gemini/v1beta/openai/chat/completions"><small>Enter the full endpoint URL provided by Straive.</small></label>
+                  <div class="settings-field-pair"><label class="field"><span>Model name</span><input id="llm-model" value="gemini-2.0-flash"><small>Model used for generating explanations.</small></label><label class="field"><span>Temperature (optional)</span><input id="llm-temperature" value="0.2"><small>Lower values for more deterministic results (0.0 – 1.0).</small></label></div>
+                  <label class="settings-switch"><input id="use-ai" type="checkbox"><i></i><span><b>Use AI-generated explanations</b><small>Generate executive narrative explanations along with numeric results.</small></span></label>
+                </div>
+                <aside class="settings-connection"><span></span><div><b id="llm-status">Not configured</b><p>Connect to Straive LLMFoundry</p><small>Last checked<br>—</small></div></aside>
+              </div>
+              <div class="settings-card-actions"><button class="button button-secondary" id="test-connection">⌘ &nbsp; Test Connection</button><button class="button button-secondary" id="clear-key">♜ &nbsp; Clear API Key</button><div id="connection-feedback"><span>✓</span><p><b>Settings ready</b><small>Configuration is stored for this session.</small></p></div></div>
+            </article>
+            <article class="card settings-constraints">
+              <div class="settings-section-head"><span>♙</span><div><h3>Operational Constraints</h3><p>Configure manufacturing constraints (disabled in POC).</p></div><b>Future Capability</b></div>
+              <p class="constraint-note"><span>ⓘ</span> Constraint configuration is shown for demonstration and will be activated in production implementation.</p>
+              <div class="constraint-grid"><label>Labor limit<div><input disabled value="6"><span>operators</span></div></label><label>Capacity threshold<div><input disabled value="75"><span>%</span></div></label><label>Max changeover<div><input disabled value="90"><span>minutes</span></div></label><label>Preferred line<select disabled><option>No preference</option></select></label><label>Line availability<select disabled><option>Standard</option></select></label><label>Maintenance blackout<select disabled><option>None</option></select></label><label>Shift constraints<select disabled><option>No constraint</option></select></label><label>Campaign rules<select disabled><option>Follow standard sequencing</option></select></label></div>
+            </article>
+            <article class="card settings-info-card"><h3><span>◇</span> Model Configuration</h3><p>Information about the predictive models used in this application.</p><dl><div><dt>Model version</dt><dd>v1.0</dd></div><div><dt>Training data window</dt><dd>Jan 2023 – Dec 2025 (3 years)</dd></div><div><dt>Target metrics</dt><dd>Startup OEE, scrap, throughput,<br>changeover, labor</dd></div><div><dt>Algorithm</dt><dd>Ensemble (XGBoost + rules)</dd></div><div><dt>Uncertainty</dt><dd>Prediction intervals (quantile)</dd></div><div><dt>Environment</dt><dd>Synthetic data (POC)</dd></div></dl></article>
+            <article class="card settings-info-card"><h3><span>▤</span> Data Information</h3><p>Details about the synthetic dataset used in this POC.</p><dl><div><dt>Total SKUs</dt><dd>420</dd></div><div><dt>Formulas</dt><dd>130</dd></div><div><dt>Filling lines</dt><dd>12</dd></div><div><dt>Compounding lines</dt><dd>5</dd></div><div><dt>Historical runs</dt><dd>22,708</dd></div><div><dt>Time period</dt><dd>Jan 2023 – Dec 2025</dd></div><div><dt>Categories</dt><dd>6 (Skincare, Haircare, Body, etc.)</dd></div></dl></article>
+            <article class="card settings-tips"><h3>☀ &nbsp; Tips & Best Practices</h3><ul><li>Use Gemini 2.0 Flash for faster responses</li><li>Keep temperature low (0.0 – 0.3)</li><li>Clear API key if using a shared device</li><li>AI explanations complement, not replace, model outputs</li><li>Ensure endpoint URL is accessible from your network</li></ul></article>
+          </div>
+          <footer class="workspace-footer"><span>Project PULSE <i>|</i> Manufacturing Intelligence</span><span>Module 1 — NPL Predictive Performance <i>|</i> Synthetic POC</span><b>v1.0</b></footer>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="analysis-overlay hidden" id="analysis-overlay" role="status" aria-live="polite"><div class="loader-card"><div class="pulse-loader"><i></i><i></i><i></i></div><p class="eyebrow">ANALYSIS IN PROGRESS</p><h3>Evaluating manufacturing fit</h3><p id="loading-message">Applying deterministic eligibility rules…</p><div class="loading-track"><span></span></div></div></div>
+  <div class="toast-region" id="toast-region" aria-live="polite"></div>
+  <script type="module" src="/static/js/app.js"></script>
+</body>
+</html>
