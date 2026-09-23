@@ -1,6 +1,7 @@
 import unittest
 
 from app.data.synthetic_data import FILLING_LINES, LAUNCH_RECORDS, dataset_summary
+from app.data.module2_data import module2_plan, solve_module2
 from app.models import SKUAnalysisRequest
 from app.services.analysis_service import analyze
 from app.services.eligibility import evaluate_filling
@@ -122,6 +123,21 @@ class AnalysisTests(unittest.TestCase):
         self.assertEqual(best["predictions"]["reference_count"], 5)
         self.assertGreater(best["similar_launches"][0]["similarity_score"], 70)
         self.assertEqual(best["risk_flags"][0]["severity"], "Low")
+
+    def test_module2_synthetic_plan_is_complete(self):
+        plan = module2_plan()
+        self.assertEqual(len(plan["skus"]), 7)
+        self.assertEqual(len(plan["lines"]), 6)
+        self.assertEqual(len(plan["constraints"]), 12)
+        self.assertIn("recommended", plan["sequences"])
+        self.assertLess(plan["metrics"]["recommended_cost"], plan["metrics"]["current_cost"])
+
+    def test_module2_scenario_recalculates_dependent_metrics(self):
+        baseline = solve_module2({"scenario_name": "Baseline", "moq_adjustment": 0, "active_constraints": 5})
+        higher_moq = solve_module2({"scenario_name": "Higher MOQ", "moq_adjustment": 25, "active_constraints": 5})
+        self.assertLess(higher_moq["metrics"]["recommended_cost"], baseline["metrics"]["recommended_cost"])
+        self.assertLess(higher_moq["metrics"]["changeovers_recommended"], baseline["metrics"]["changeovers_recommended"])
+        self.assertGreater(higher_moq["metrics"]["inventory_recommended"], baseline["metrics"]["inventory_recommended"])
 
 
 if __name__ == "__main__":

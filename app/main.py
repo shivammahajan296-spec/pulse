@@ -6,8 +6,9 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import HTMLResponse, Response
 from fastapi.staticfiles import StaticFiles
 
+from app.data.module2_data import module2_plan, solve_module2
 from app.data.synthetic_data import FILLING_LINES, LAUNCH_RECORDS, dataset_summary
-from app.models import LLMExplainRequest, LLMTestRequest, SKUAnalysisRequest
+from app.models import LLMExplainRequest, LLMTestRequest, Module2SolveRequest, SKUAnalysisRequest
 from app.services.analysis_service import ANALYSES, analyze
 from app.services.llm_service import generate_explanation, test_connection
 from app.services.ranking import WEIGHTS
@@ -18,11 +19,17 @@ BASE_DIR = Path(__file__).resolve().parent
 app = FastAPI(title="Project PULSE", version="1.0.0", description="New Product Launch predictive performance POC")
 app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
 INDEX_HTML = (BASE_DIR / "templates" / "index.html").read_text(encoding="utf-8")
+MODULE2_HTML = (BASE_DIR / "templates" / "module2.html").read_text(encoding="utf-8")
 
 
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
     return HTMLResponse(INDEX_HTML)
+
+
+@app.get("/module2", response_class=HTMLResponse)
+async def module2(request: Request):
+    return HTMLResponse(MODULE2_HTML)
 
 
 @app.get("/favicon.ico", include_in_schema=False)
@@ -51,6 +58,16 @@ async def sample_skus():
 @app.get("/api/model-info")
 async def model_info():
     return {"dataset": dataset_summary(), "ranking_weights": WEIGHTS, "similarity_weights": SIMILARITY_WEIGHTS, "principles": ["Cold-start attribute modeling — SKU identity is excluded", "Startup-window targets from run sequences 1–4", "Launch-group holdout validation prevents leakage", "Line-specific historical similarity evidence", "Deterministic, inspectable eligibility and ranking"]}
+
+
+@app.get("/api/module2/plan")
+async def get_module2_plan():
+    return module2_plan()
+
+
+@app.post("/api/module2/solve")
+async def solve_module2_plan(payload: Module2SolveRequest):
+    return solve_module2(payload.model_dump())
 
 
 @app.post("/api/analyze")

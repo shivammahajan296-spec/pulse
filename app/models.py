@@ -48,3 +48,10 @@ class LLMTestRequest(BaseModel):
 class LLMExplainRequest(LLMTestRequest):
     analysis_id: str
     prompt_type: Literal["recommendation", "risk", "comparison"] = "recommendation"
+
+
+class Module2SolveRequest(BaseModel):
+    scenario_name: str = Field(default="Custom Scenario", min_length=2, max_length=80)
+    moq_adjustment: int = Field(default=0, ge=-50, le=50)
+    active_constraints: int = Field(default=5, ge=0, le=12)
+    strict_due_dates: bool = False

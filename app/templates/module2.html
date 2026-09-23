@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Project PULSE — integrated manufacturing strategy optimization">
+  <title>Project PULSE · Manufacturing Optimisation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/module2.css">
+</head>
+<body>
+  <div class="m2-shell">
+    <aside class="m2-sidebar" id="m2-sidebar">
+      <div class="m2-brand"><span class="m2-logo"><i></i><i></i><i></i></span><div><strong>Project PULSE</strong><small>Manufacturing<br>Intelligence</small></div></div>
+      <div class="module-switcher">
+        <button id="module-switch" type="button">Module 2 <span>⌄</span></button>
+        <div id="module-menu" class="module-menu hidden"><a href="/">Module 1 · NPL Performance</a><button type="button">Module 2 · Optimisation ✓</button></div>
+      </div>
+      <nav class="m2-nav" aria-label="Module 2 navigation">
+        <button data-view="home" class="active"><span>⌂</span>Home</button>
+        <button data-view="strategy"><span>▣</span>Strategy Overview</button>
+        <button data-view="pv"><span>☷</span>PV Prioritisation</button>
+        <button data-view="moq"><span>▦</span>Line-Level MOQ</button>
+        <button data-view="campaign"><span>⌘</span>Campaign Sequencing</button>
+        <button data-view="cost"><span>▤</span>Cost Analysis</button>
+        <button data-view="scenario"><span>◌</span>Scenario Analysis</button>
+        <button data-view="constraints"><span>♙</span>Constraints</button>
+        <button data-view="explain"><span>♢</span>Explainability</button>
+        <button data-view="review"><span>☑</span>Review &amp; Approval</button>
+        <hr>
+        <button data-view="model"><span>◇</span>Model &amp; Data</button>
+        <button data-view="settings"><span>⚙</span>Settings</button>
+      </nav>
+      <div class="m2-environment"><p>♢ &nbsp; Environment</p><span><i></i>POC (Synthetic Data)</span><small>v1.0.0</small></div>
+    </aside>
+
+    <main class="m2-main">
+      <header class="m2-topbar">
+        <button class="mobile-nav" id="m2-mobile-nav">☰</button>
+        <div class="m2-title"><p id="m2-breadcrumb">Project PULSE <span>/</span> Module 2</p><h1 id="m2-heading">Run Strategy Optimization</h1><div id="m2-subtitle">Optimize the full plan — PV prioritization, MOQ, sequencing and order cost — with one integrated model.</div></div>
+        <div class="m2-actions">
+          <label><small>Site</small><select id="site-select"><option>ELC - Site 1</option><option>ELC - Site 2</option></select></label>
+          <label><small>▣ &nbsp; Planning Horizon</small><select id="horizon-select"><option>4 Weeks</option><option>8 Weeks</option><option>12 Weeks</option></select></label>
+          <button class="m2-primary" id="solve-plan">↻ &nbsp; Re-solve Plan</button>
+          <div class="m2-account"><button class="m2-avatar" id="m2-account-button">SM</button><div class="m2-account-menu hidden" id="m2-account-menu"><b id="m2-account-email">Demo user</b><a href="/">Open Module 1</a><button id="m2-logout">Log out</button></div></div>
+        </div>
+      </header>
+      <section class="m2-content" id="m2-content"><div class="m2-loading"><span></span><p>Loading synthetic optimization plan…</p></div></section>
+    </main>
+  </div>
+  <div class="m2-overlay hidden" id="m2-overlay"><div><span class="m2-spinner"></span><h3>Solving integrated plan</h3><p id="m2-progress">Balancing production versions and capacity…</p></div></div>
+  <div class="m2-toast" id="m2-toast" aria-live="polite"></div>
+  <script type="module" src="/static/js/module2.js"></script>
+</body>
+</html>
