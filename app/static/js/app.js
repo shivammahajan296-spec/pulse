@@ -42,9 +42,9 @@ const DEMO_RISKS = [
 const comparisonState = {sort:"score", line:"all", search:"", detail:"F04"};
 const referenceState = {line:"all", search:"", min:70, selected:"SKU-1024"};
 const SKU_SCENARIOS = {
-  low:{label:"Low risk",sku:"NPL-SKIN-042",values:{launch_scenario:"standard",product_name:"New Hydrating Lotion",category:"Skincare",product_family:"Hydration",formula_type:"Lotion",viscosity:14500,fill_volume_ml:200,package_type:"Bottle",container_type:"Plastic Bottle",closure_type:"Pump",filling_technology:"Piston Filling",decoration:"Label",process_complexity:"Medium",previous_product:"Hydrating Serum",previous_product_category:"Skincare",planned_batch_quantity:50000,run_sequence:1,campaign_position:2,days_since_prior_run:4,days_since_last_pm:11,labor_assumption:6,compounding_required:true}},
-  medium:{label:"Medium risk",sku:"NPL-SER-118",values:{launch_scenario:"standard",product_name:"Radiance Renewal Serum",category:"Serum",product_family:"Treatment",formula_type:"Serum",viscosity:11500,fill_volume_ml:100,package_type:"Bottle",container_type:"Glass Bottle",closure_type:"Dropper",filling_technology:"Pump Filling",decoration:"Hot Stamp",process_complexity:"High",previous_product:"Daily Foundation",previous_product_category:"Foundation",planned_batch_quantity:30000,run_sequence:1,campaign_position:1,days_since_prior_run:21,days_since_last_pm:30,labor_assumption:7,compounding_required:true}},
-  high:{label:"High risk",sku:"NPL-MAS-207",values:{launch_scenario:"standard",product_name:"Extreme Volume Mascara",category:"Mascara",product_family:"Color",formula_type:"Mascara",viscosity:60000,fill_volume_ml:15,package_type:"Bottle",container_type:"Plastic Bottle",closure_type:"Wand",filling_technology:"Mascara Filling",decoration:"Hot Stamp",process_complexity:"High",previous_product:"Hydrating Lotion",previous_product_category:"Skincare",planned_batch_quantity:65000,run_sequence:1,campaign_position:1,days_since_prior_run:45,days_since_last_pm:60,labor_assumption:6,compounding_required:true}},
+  low:{label:"Hydrating Lotion",sku:"NPL-SKIN-042",values:{launch_scenario:"standard",product_name:"New Hydrating Lotion",category:"Skincare",product_family:"Hydration",formula_type:"Lotion",viscosity:14500,fill_volume_ml:200,package_type:"Bottle",container_type:"Plastic Bottle",closure_type:"Pump",filling_technology:"Piston Filling",decoration:"Label",process_complexity:"Medium",previous_product:"Hydrating Serum",previous_product_category:"Skincare",planned_batch_quantity:50000,run_sequence:1,campaign_position:2,days_since_prior_run:4,days_since_last_pm:11,labor_assumption:6,compounding_required:true}},
+  medium:{label:"Radiance Renewal Serum",sku:"NPL-SER-118",values:{launch_scenario:"standard",product_name:"Radiance Renewal Serum",category:"Serum",product_family:"Treatment",formula_type:"Serum",viscosity:11500,fill_volume_ml:100,package_type:"Bottle",container_type:"Glass Bottle",closure_type:"Dropper",filling_technology:"Pump Filling",decoration:"Hot Stamp",process_complexity:"High",previous_product:"Daily Foundation",previous_product_category:"Foundation",planned_batch_quantity:30000,run_sequence:1,campaign_position:1,days_since_prior_run:21,days_since_last_pm:30,labor_assumption:7,compounding_required:true}},
+  high:{label:"Extreme Volume Mascara",sku:"NPL-MAS-207",values:{launch_scenario:"standard",product_name:"Extreme Volume Mascara",category:"Mascara",product_family:"Color",formula_type:"Mascara",viscosity:60000,fill_volume_ml:15,package_type:"Bottle",container_type:"Plastic Bottle",closure_type:"Wand",filling_technology:"Mascara Filling",decoration:"Hot Stamp",process_complexity:"High",previous_product:"Hydrating Lotion",previous_product_category:"Skincare",planned_batch_quantity:65000,run_sequence:1,campaign_position:1,days_since_prior_run:45,days_since_last_pm:60,labor_assumption:6,compounding_required:true}},
   cold:{label:"Cold-start",sku:"NPL-INN-501",values:{launch_scenario:"cold_start",product_name:"Bio-Peptide Microgel",category:"Skincare",product_family:"Premium",formula_type:"Gel",viscosity:26000,fill_volume_ml:75,package_type:"Airless Pump",container_type:"Plastic Bottle",closure_type:"Pump",filling_technology:"Piston Filling",decoration:"Sleeve",process_complexity:"High",previous_product:"Hydrating Serum",previous_product_category:"Serum",planned_batch_quantity:18000,run_sequence:1,campaign_position:1,days_since_prior_run:30,days_since_last_pm:60,labor_assumption:6,compounding_required:true}},
   rebrand:{label:"Rebrand",sku:"NPL-BRD-310",values:{launch_scenario:"rebrand",product_name:"Aurelia Hydration Lotion",category:"Skincare",product_family:"Daily Care",formula_type:"Lotion",viscosity:14500,fill_volume_ml:200,package_type:"Bottle",container_type:"Plastic Bottle",closure_type:"Pump",filling_technology:"Piston Filling",decoration:"Label",process_complexity:"Medium",previous_product:"Aqua Repair Lotion",previous_product_category:"Skincare",planned_batch_quantity:50000,run_sequence:1,campaign_position:2,days_since_prior_run:3,days_since_last_pm:11,labor_assumption:6,compounding_required:true}},
 };
@@ -199,6 +199,7 @@ function renderDemoRisks() {
 }
 
 function renderOverview(data) {
+  $("#nav-overview").classList.remove("hidden");
   $("#view-overview").classList.add("analysis-active");
   $("#overview-empty").classList.add("hidden");
   const root = $("#overview-results");
@@ -351,7 +352,30 @@ function formPayload(){const form=new FormData($("#analysis-form")),object=Objec
 
 async function runAnalysis(event){event?.preventDefault();const overlay=$("#analysis-overlay");overlay.classList.remove("hidden");const messages=["Applying deterministic eligibility rules…","Retrieving line-specific launch evidence…","Estimating startup KPIs and intervals…","Ranking candidates across eight objectives…"];let index=0;const timer=setInterval(()=>{$("#loading-message").textContent=messages[++index%messages.length]},420);try{const data=await api.analyze(formPayload());setAnalysis(data);renderAll(data);showView("overview");toast(data.recommended_line?`Analysis complete · ${data.recommended_line.line_id} recommended`:`Analysis complete · no eligible filling line`,data.recommended_line?"success":"error");await maybeGenerateNarrative(data)}catch(error){toast(error.message,"error")}finally{clearInterval(timer);overlay.classList.add("hidden")}}
 
-function loadScenario(key="low") {const scenario=SKU_SCENARIOS[key]||SKU_SCENARIOS.low;Object.entries(scenario.values).forEach(([name,value])=>{const element=$(`[name="${name}"]`);if(!element)return;if(element.type==="checkbox")element.checked=Boolean(value);else element.value=value});$("#temporary-sku").value=scenario.sku;$$('.scenario-option').forEach(button=>button.classList.toggle('selected',button.dataset.scenario===key));renderAnalysisPreview();toast(`${scenario.label} example loaded`)}
+function clearAnalysisForm(){
+  const form=$("#analysis-form");
+  form.reset();
+  [...form.elements].forEach(element=>{
+    if(element.name==="launch_scenario"){element.value="standard";return}
+    if(element.type==="text"||element.type==="number")element.value="";
+    else if(element.tagName==="SELECT")element.selectedIndex=0;
+    else if(element.type==="checkbox")element.checked=false;
+  });
+  $("#temporary-sku").value="";
+  $$('.scenario-option').forEach(button=>button.classList.toggle('selected',button.dataset.scenario==="blank"));
+  renderAnalysisPreview();
+  toast("Blank SKU form ready");
+}
+
+function loadScenario(key="low") {
+  if(key==="blank"){clearAnalysisForm();return}
+  const scenario=SKU_SCENARIOS[key]||SKU_SCENARIOS.low;
+  Object.entries(scenario.values).forEach(([name,value])=>{const element=$(`[name="${name}"]`);if(!element)return;if(element.type==="checkbox")element.checked=Boolean(value);else element.value=value});
+  $("#temporary-sku").value=scenario.sku;
+  $$('.scenario-option').forEach(button=>button.classList.toggle('selected',button.dataset.scenario===key));
+  renderAnalysisPreview();
+  toast(`${scenario.label} sample inputs loaded`);
+}
 
 function loadDemo(){loadScenario("low")}
 

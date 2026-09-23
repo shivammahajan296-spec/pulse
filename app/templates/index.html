@@ -46,8 +46,8 @@
         <div><strong>Project PULSE</strong><small>Manufacturing Intelligence</small><a class="module-one-switch" href="/module2" title="Open Manufacturing Optimisation">Module 1 <span>⌄</span></a></div>
       </div>
       <nav class="nav" aria-label="Application navigation">
-        <button class="nav-item active" data-view="overview"><span class="nav-icon">⌂</span><span>Overview</span></button>
-        <button class="nav-item" data-view="analysis"><span class="nav-icon">＋</span><span>New SKU Analysis</span></button>
+        <button class="nav-item active" data-view="analysis"><span class="nav-icon">＋</span><span>New SKU Analysis</span></button>
+        <button class="nav-item hidden" id="nav-overview" data-view="overview"><span class="nav-icon">⌂</span><span>Overview</span></button>
         <button class="nav-item" data-view="comparison"><span class="nav-icon">≋</span><span>Line Comparison</span></button>
         <button class="nav-item" data-view="references"><span class="nav-icon">◫</span><span>Historical References</span></button>
         <button class="nav-item" data-view="risks"><span class="nav-icon">◇</span><span>Risk & Explainability</span></button>
@@ -86,7 +86,7 @@
       </header>
 
       <section class="content">
-        <div class="view active" id="view-overview">
+        <div class="view" id="view-overview">
           <div class="page-heading">
             <div><p class="eyebrow">DECISION WORKSPACE</p><h2>Launch recommendation</h2><p class="subtle" id="overview-subtitle">Evaluate a new SKU to see its manufacturing line recommendation.</p></div>
             <button class="button button-secondary" id="rerun-analysis" disabled>↻ Refresh analysis</button>
@@ -136,15 +136,16 @@
           </div>
         </div>
 
-        <div class="view" id="view-analysis">
+        <div class="view active" id="view-analysis">
           <section class="scenario-picker" aria-labelledby="scenario-picker-title">
-            <div class="scenario-picker-heading"><div><p class="eyebrow">QUICK START EXAMPLES</p><h2 id="scenario-picker-title">Choose a launch storyline</h2></div><p>Select an example to populate the form, then run the analysis to update every decision page.</p></div>
+            <div class="scenario-picker-heading"><div><p class="eyebrow">QUICK START EXAMPLES</p><h2 id="scenario-picker-title">Sample Inputs</h2></div><p>Select pre-filled sample inputs or start with a blank form, then analyze the SKU to generate risk and recommendation outputs.</p></div>
             <div class="scenario-options">
-              <button class="scenario-option low selected" type="button" data-scenario="low"><span class="scenario-icon">✓</span><span><small>LOW RISK</small><b>Hydrating Lotion</b><em>Strong history · familiar package</em></span><strong>Use example →</strong></button>
-              <button class="scenario-option medium" type="button" data-scenario="medium"><span class="scenario-icon">!</span><span><small>MEDIUM RISK</small><b>Radiance Renewal Serum</b><em>Elevated scrap · narrow line choice</em></span><strong>Use example →</strong></button>
-              <button class="scenario-option high" type="button" data-scenario="high"><span class="scenario-icon">△</span><span><small>HIGH RISK</small><b>Extreme Volume Mascara</b><em>Boundary viscosity · labor pressure</em></span><strong>Use example →</strong></button>
+              <button class="scenario-option sample selected" type="button" data-scenario="low"><span class="scenario-icon">01</span><span><small>SAMPLE INPUT 01</small><b>Hydrating Lotion</b><em>Lotion · 200 ml pump bottle</em></span><strong>Use sample →</strong></button>
+              <button class="scenario-option sample" type="button" data-scenario="medium"><span class="scenario-icon">02</span><span><small>SAMPLE INPUT 02</small><b>Radiance Renewal Serum</b><em>Serum · 100 ml glass dropper</em></span><strong>Use sample →</strong></button>
+              <button class="scenario-option sample" type="button" data-scenario="high"><span class="scenario-icon">03</span><span><small>SAMPLE INPUT 03</small><b>Extreme Volume Mascara</b><em>Mascara · 15 ml wand pack</em></span><strong>Use sample →</strong></button>
               <button class="scenario-option cold" type="button" data-scenario="cold"><span class="scenario-icon">○</span><span><small>TRUE COLD START</small><b>Bio-Peptide Microgel</b><em>No comparable SKU history</em></span><strong>Use example →</strong></button>
               <button class="scenario-option rebrand" type="button" data-scenario="rebrand"><span class="scenario-icon">↻</span><span><small>NEW BRANDING</small><b>Aurelia Hydration Lotion</b><em>Known formula · new commercial identity</em></span><strong>Use example →</strong></button>
+              <button class="scenario-option blank" type="button" data-scenario="blank"><span class="scenario-icon">＋</span><span><small>START FRESH</small><b>Blank Form</b><em>Clear the form and enter a new SKU</em></span><strong>Create new →</strong></button>
             </div>
           </section>
           <div class="analysis-layout">
