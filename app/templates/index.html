@@ -8,7 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="/static/css/styles.css?v=20261007-1">
+  <link rel="stylesheet" href="/static/css/copilot.css?v=20261007-1">
 </head>
 <body>
   <section class="login-screen" id="login-screen" aria-labelledby="login-title">
@@ -43,7 +44,7 @@
     <aside class="sidebar" id="sidebar">
       <div class="brand">
         <div class="brand-mark"><span></span><span></span><span></span></div>
-        <div><strong>Project PULSE</strong><small>Manufacturing Intelligence</small><a class="module-one-switch" href="/module2" title="Open Manufacturing Optimisation">Module 1 <span>⌄</span></a></div>
+        <div><strong>Project PULSE</strong><small>Manufacturing Intelligence</small><details class="module-one-switch"><summary><span class="module-number">01</span><span><small>Current workspace</small><b>NPL Performance</b></span><i>⌄</i></summary><div class="module-one-menu"><span class="current"><em>01</em><span><small>Module 1</small><b>NPL Performance</b></span><i>✓</i></span><a href="/module2"><em>02</em><span><small>Module 2</small><b>Manufacturing Optimisation</b></span><i>→</i></a></div></details></div>
       </div>
       <nav class="nav" aria-label="Application navigation">
         <button class="nav-item active" data-view="analysis"><span class="nav-icon">＋</span><span>New SKU Analysis</span></button>
@@ -265,5 +266,6 @@
   <div class="analysis-overlay hidden" id="analysis-overlay" role="status" aria-live="polite"><div class="loader-card"><div class="pulse-loader"><i></i><i></i><i></i></div><p class="eyebrow">ANALYSIS IN PROGRESS</p><h3>Evaluating manufacturing fit</h3><p id="loading-message">Applying deterministic eligibility rules…</p><div class="loading-track"><span></span></div></div></div>
   <div class="toast-region" id="toast-region" aria-live="polite"></div>
   <script type="module" src="/static/js/app.js"></script>
+  <script type="module" src="/static/js/copilot.js?v=20261007-1"></script>
 </body>
 </html>

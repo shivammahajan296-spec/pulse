@@ -8,50 +8,59 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/css/module2.css">
+  <link rel="stylesheet" href="/static/css/module2.css?v=20261007-6">
+  <link rel="stylesheet" href="/static/css/copilot.css?v=20261007-1">
 </head>
 <body>
   <div class="m2-shell">
     <aside class="m2-sidebar" id="m2-sidebar">
       <div class="m2-brand"><span class="m2-logo"><i></i><i></i><i></i></span><div><strong>Project PULSE</strong><small>Manufacturing<br>Intelligence</small></div></div>
       <div class="module-switcher">
-        <button id="module-switch" type="button">Module 2 <span>⌄</span></button>
-        <div id="module-menu" class="module-menu hidden"><a href="/">Module 1 · NPL Performance</a><button type="button">Module 2 · Optimisation ✓</button></div>
+        <button id="module-switch" type="button"><span class="module-number">02</span><span class="module-copy"><small>Current workspace</small><b>Manufacturing Optimisation</b></span><i>⌄</i></button>
+        <div id="module-menu" class="module-menu hidden"><a href="/"><em>01</em><span><small>Module 1</small><b>NPL Performance</b></span><i>→</i></a><button type="button" class="current"><em>02</em><span><small>Module 2</small><b>Manufacturing Optimisation</b></span><i>✓</i></button></div>
       </div>
       <nav class="m2-nav" aria-label="Module 2 navigation">
-        <button data-view="home" class="active"><span>⌂</span>Home</button>
-        <button data-view="strategy"><span>▣</span>Strategy Overview</button>
-        <button data-view="pv"><span>☷</span>PV Prioritisation</button>
-        <button data-view="moq"><span>▦</span>Line-Level MOQ</button>
-        <button data-view="campaign"><span>⌘</span>Campaign Sequencing</button>
-        <button data-view="cost"><span>▤</span>Cost Analysis</button>
-        <button data-view="scenario"><span>◌</span>Scenario Analysis</button>
-        <button data-view="constraints"><span>♙</span>Constraints</button>
-        <button data-view="explain"><span>♢</span>Explainability</button>
-        <button data-view="review"><span>☑</span>Review &amp; Approval</button>
-        <hr>
-        <button data-view="model"><span>◇</span>Model &amp; Data</button>
-        <button data-view="settings"><span>⚙</span>Settings</button>
+        <div class="nav-group"><p>Plan</p>
+          <button data-view="launch" class="active"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6zM15 3v5h5M9 12h7M9 16h7"/></svg></span>Launch Brief</button>
+          <button data-view="strategy"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 19V9M10 19V5M16 19v-7M22 19V3M2 19h21"/></svg></span>Strategic Overview</button>
+        </div>
+        <div class="nav-group"><p>Optimize</p>
+          <button data-view="pv"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 6h10M4 12h16M4 18h8M17 3v6M8 9v6M16 15v6"/></svg></span>PV Prioritisation</button>
+          <button data-view="moq"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 10h16M10 4v16M15 10v10"/></svg></span>Line-Level MOQ</button>
+          <button data-view="campaign"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 7h13M14 4l3 3-3 3M20 17H7M10 14l-3 3 3 3"/></svg></span>Campaign Sequencing</button>
+          <button data-view="cost"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 6.5c0-2-2-3-5-3s-5 1.3-5 3 1.5 2.6 5 3.5 5 1.8 5 4-2 3.5-5 3.5-5-1.3-5-3.5"/></svg></span>Cost Analysis</button>
+        </div>
+        <div class="nav-group"><p>Review</p>
+          <button data-view="scenario"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM8 9h8M8 13h5M16 16l2 2 3-4"/></svg></span>Manufacturing Review</button>
+          <button data-view="constraints"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6"/></svg></span>Constraints</button>
+          <button data-view="explain"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M8 14c-1.3-1.1-2-2.6-2-4a6 6 0 1 1 12 0c0 1.4-.7 2.9-2 4-.8.7-1 1.3-1 2H9c0-.7-.2-1.3-1-2z"/></svg></span>Explainability</button>
+          <button data-view="review"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M6 3h12v18H6zM9 3V1h6v2M9 9l2 2 4-4M9 16h6"/></svg></span>Review &amp; Approve</button>
+        </div>
+        <div class="nav-group nav-system"><p>System</p>
+          <button data-view="model"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="m12 3 8 4-8 4-8-4zM4 12l8 4 8-4M4 17l8 4 8-4"/></svg></span>Model &amp; Data</button>
+          <button data-view="settings"><span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1A7 7 0 0 0 15 6l-.3-2.6h-4L10.4 6A7 7 0 0 0 8 7.1l-2.4-1-2 3.4 2 1.5a7 7 0 0 0 0 2l-2 1.5 2 3.4 2.4-1A7 7 0 0 0 10.4 18l.3 2.6h4L15 18a7 7 0 0 0 1.5-1.1l2.4 1 2-3.4-2-1.5a7 7 0 0 0 .1-1z"/></svg></span>Settings</button>
+        </div>
       </nav>
-      <div class="m2-environment"><p>♢ &nbsp; Environment</p><span><i></i>POC (Synthetic Data)</span><small>v1.0.0</small></div>
+      <div class="m2-environment"><p><span class="env-shield">◇</span> Environment</p><span><i></i>POC · Synthetic Data</span><small>Module 2 &nbsp;·&nbsp; v1.2.0</small></div>
     </aside>
 
     <main class="m2-main">
       <header class="m2-topbar">
         <button class="mobile-nav" id="m2-mobile-nav">☰</button>
-        <div class="m2-title"><p id="m2-breadcrumb">Project PULSE <span>/</span> Module 2</p><h1 id="m2-heading">Run Strategy Optimization</h1><div id="m2-subtitle">Optimize the full plan — PV prioritization, MOQ, sequencing and order cost — with one integrated model.</div></div>
+        <div class="m2-title"><p id="m2-breadcrumb">Project PULSE <span>/</span> Module 2 <span>/</span> Launch Brief</p><h1 id="m2-heading">Launch Brief</h1><div id="m2-subtitle">Select one or more launches to define the manufacturing optimization portfolio.</div></div>
         <div class="m2-actions">
           <label><small>Site</small><select id="site-select"><option>ELC - Site 1</option><option>ELC - Site 2</option></select></label>
           <label><small>▣ &nbsp; Planning Horizon</small><select id="horizon-select"><option>4 Weeks</option><option>8 Weeks</option><option>12 Weeks</option></select></label>
-          <button class="m2-primary" id="solve-plan">↻ &nbsp; Re-solve Plan</button>
+          <button class="m2-primary" id="solve-plan">Build Plan</button>
           <div class="m2-account"><button class="m2-avatar" id="m2-account-button">SM</button><div class="m2-account-menu hidden" id="m2-account-menu"><b id="m2-account-email">Demo user</b><a href="/">Open Module 1</a><button id="m2-logout">Log out</button></div></div>
         </div>
       </header>
       <section class="m2-content" id="m2-content"><div class="m2-loading"><span></span><p>Loading synthetic optimization plan…</p></div></section>
     </main>
   </div>
-  <div class="m2-overlay hidden" id="m2-overlay"><div><span class="m2-spinner"></span><h3>Solving integrated plan</h3><p id="m2-progress">Balancing production versions and capacity…</p></div></div>
+  <div class="m2-overlay hidden" id="m2-overlay"><div><span class="m2-spinner"></span><h3 id="m2-overlay-title">Solving integrated plan</h3><p id="m2-progress">Balancing production versions and capacity…</p><div class="m2-overlay-track"><i></i></div></div></div>
   <div class="m2-toast" id="m2-toast" aria-live="polite"></div>
-  <script type="module" src="/static/js/module2.js"></script>
+  <script type="module" src="/static/js/module2.js?v=20261007-6"></script>
+  <script type="module" src="/static/js/copilot.js?v=20261007-1"></script>
 </body>
 </html>
